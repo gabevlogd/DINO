@@ -2,27 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : MonoBehaviour
 {
-    public static Transform playerTransform;
-
-    public float Speed;
-    public float AngularSpeed;
-    public PlayerController Controller;
+    public PlayerData Data;
 
     private void Awake()
     {
-        Controller = new(transform, Speed, AngularSpeed);
-        playerTransform = transform;
+        Data.Input = new PlayerInput();
+        Data.Transform = transform;
+        Data.PlayerStateMachine = new PlayerStateMachine(ref Data);
     }
 
-    private void OnEnable() => Controller.EnableInput();
-    private void OnDisable() => Controller.DisableInput();
+    private void OnEnable() => Data.Input.Enable();
 
-    private void Update()
-    {
-        Controller.HandleMovement();
-        //Debug.Log("        "+ Input.GetAxisRaw("Vertical"));
-    }
+    private void OnDisable() => Data.Input.Disable();
 
+    private void FixedUpdate() => Data.PlayerStateMachine.CurrentState.OnFixedUpdate();
+
+    private void Update() => Data.PlayerStateMachine.CurrentState.OnUpdate();
+}
+
+[System.Serializable]
+public struct PlayerData
+{
+    [HideInInspector]
+    public Transform Transform;
+    public PlayerInput Input;
+    public PlayerStateMachine PlayerStateMachine;
 }
