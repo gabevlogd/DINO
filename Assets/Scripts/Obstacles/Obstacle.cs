@@ -2,30 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DINO
+[RequireComponent(typeof(Rigidbody))]
+public class Obstacle : MonoBehaviour, IObstacle
 {
+    public float Speed;
+    public Transform SpawnPoint;
+    protected Rigidbody m_rigidbody;
+    protected ObstaclesPool m_obstaclesPool;
+    protected MeshRenderer m_meshRenderer;
 
-    [RequireComponent(typeof(Rigidbody))]
-    public class Obstacle : MonoBehaviour
+    
+
+    public virtual void InitObstacle(ObstaclesPool obstaclesPool)
     {
-        public float Speed;
-        public Transform SpawnPoint;
-        protected Rigidbody m_rigidbody;
-
-        protected virtual void Awake()
-        {
-            m_rigidbody = GetComponent<Rigidbody>();
-            m_rigidbody.velocity = new Vector3(-Speed, 0f, 0f);
-            transform.position = SpawnPoint.position;
-        }
-
-        private Vector3 GetSpawnPosition() //to continue;
-        {
-            float targetDepth = Vector3.Distance(GameManager.Instance.Player.transform.position, transform.position);
-            Vector3 screenPoint = new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight * 0.5f, targetDepth); //screen spawn point
-            Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(screenPoint); // world spawn pointeo
-            //spawnPosition += new Vector3(0f, PositionY, 0f); // set the y position
-            return spawnPosition;
-        }
+        m_rigidbody = GetComponent<Rigidbody>();
+        m_meshRenderer = GetComponentInChildren<MeshRenderer>();
+        m_obstaclesPool = obstaclesPool;
+        m_rigidbody.velocity = new Vector3(-Speed, 0f, 0f);
+        DisableObstacle();
     }
+
+    public virtual void DisableObstacle()
+    {
+        m_obstaclesPool.ReleaseObject(this);
+        gameObject.SetActive(false);
+    }
+
+    public virtual void EnableObstacle()
+    {
+        transform.position = SpawnPoint.position;
+        gameObject.SetActive(true);
+        StartCoroutine(test());
+    }
+
+    private IEnumerator test()
+    {
+        yield return new WaitForSeconds(2f);
+
+        yield return new WaitUntil(() => m_meshRenderer.isVisible == false);
+
+        DisableObstacle();
+    }
+
+
 }
+
+

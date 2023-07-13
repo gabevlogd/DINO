@@ -5,4 +5,10 @@
         Run,
         Jump
     }
+
+    public enum ObstaclesType
+    {
+        Cactus,
+        Bird
+    }
 }
