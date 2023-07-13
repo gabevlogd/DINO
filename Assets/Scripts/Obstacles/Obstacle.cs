@@ -19,7 +19,7 @@ public class Obstacle : MonoBehaviour, IObstacle
         m_meshRenderer = GetComponentInChildren<MeshRenderer>();
         m_obstaclesPool = obstaclesPool;
         m_rigidbody.velocity = new Vector3(-Speed, 0f, 0f);
-        DisableObstacle();
+        gameObject.SetActive(false);
     }
 
     public virtual void DisableObstacle()
@@ -32,10 +32,10 @@ public class Obstacle : MonoBehaviour, IObstacle
     {
         transform.position = SpawnPoint.position;
         gameObject.SetActive(true);
-        StartCoroutine(test());
+        StartCoroutine(LifeSpan());
     }
 
-    private IEnumerator test()
+    private IEnumerator LifeSpan()
     {
         yield return new WaitForSeconds(2f);
 
@@ -43,6 +43,7 @@ public class Obstacle : MonoBehaviour, IObstacle
 
         DisableObstacle();
     }
+
 
 
 }

@@ -11,4 +11,10 @@
         Cactus,
         Bird
     }
+
+    public enum Event
+    {
+        UpdateScore,
+        ResetMatch
+    }
 }

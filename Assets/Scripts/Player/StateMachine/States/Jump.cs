@@ -10,13 +10,14 @@ public class Jump : PlayerState
 
     public Jump(Enumerators.PlayerState stateID, StatesManager<Enumerators.PlayerState> stateManager = null) : base(stateID, stateManager)
     {
+        m_startVelocity = new Vector3(0f, Mathf.Sqrt(2f * -Physics.gravity.y * m_maxHeight), 0f);
     }
 
     public override void OnEnter()
     {
         base.OnEnter();
         m_time = 0;
-        m_startVelocity = new Vector3(0f, Mathf.Sqrt(2f * 9.81f * m_maxHeight), 0f);
+        SetShaderDistortion(10f);
     }
 
     public override void OnFixedUpdate()
@@ -31,6 +32,12 @@ public class Jump : PlayerState
         HandleInput();
     }
 
+    public override void OnExit()
+    {
+        base.OnExit();
+        SetShaderDistortion(0f);
+    }
+
     public override void HandleInput()
     {
         base.HandleInput();
@@ -38,10 +45,9 @@ public class Jump : PlayerState
             m_playerStateMachine.ChangeState(Enumerators.PlayerState.Run);
     }
 
-    private void PerformJump()
-    {
-        m_playerTransform.position = m_startVelocity * GetTime() + 0.5f * Physics.gravity * Mathf.Pow(GetTime(), 2f);
-    }
+    private void PerformJump() => m_playerTransform.position = m_startVelocity * GetTime() + 0.5f * Physics.gravity * Mathf.Pow(GetTime(), 2f);
 
     private float GetTime() => m_time += Time.deltaTime;
+
+    private void SetShaderDistortion(float value) => m_playerStateMachine.PlayerData.MeshRenderer.material.SetFloat("_Distortion", value);
 }

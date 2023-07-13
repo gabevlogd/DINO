@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     private void FixedUpdate() => Data.PlayerStateMachine.CurrentState.OnFixedUpdate();
 
     private void Update() => Data.PlayerStateMachine.CurrentState.OnUpdate();
+
+    private void OnTriggerEnter(Collider other) => GameManager.EventManager.TriggerEvent(Enumerators.Event.ResetMatch);
 }
 
 [System.Serializable]
@@ -30,4 +32,5 @@ public struct PlayerData
     public Transform Transform;
     public PlayerInput Input;
     public PlayerStateMachine PlayerStateMachine;
+    public MeshRenderer MeshRenderer;
 }

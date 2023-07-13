@@ -13,8 +13,10 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        m_obstaclesPool = new ObstaclesPool(0, ObstaclePrefabs);
+        m_obstaclesPool = new ObstaclesPool(0, ObstaclePrefabs, transform);
         ResetSpawnCondition();
+
+        GameManager.EventManager.Register(Enumerators.Event.ResetMatch, ResetPool);
     }
 
     private void Update() => CheckSpwanRequest();
@@ -36,6 +38,13 @@ public class Spawner : MonoBehaviour
     {
         m_randomDeltaTime = Random.Range(MinSpawnDeltaTime, MaxSpawnDeltaTime);
         m_timer = 0f;
+    }
+
+    public void ResetPool()
+    {
+        m_obstaclesPool = m_obstaclesPool = new ObstaclesPool(0, ObstaclePrefabs, transform);
+        foreach (Transform child in transform) Destroy(child.gameObject);
+        
     }
 
     private Vector3 GetSpawnPosition() //to continue;

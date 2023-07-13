@@ -9,9 +9,9 @@ public class ObstaclesPool
     protected List<Obstacle> m_inUse;
     protected ObstaclesFactory m_obstaclesFactory;
 
-    public ObstaclesPool(int startSize, List<Obstacle> obstaclesPrefabs)
+    public ObstaclesPool(int startSize, List<Obstacle> obstaclesPrefabs, Transform obstaclesParent)
     {
-        m_obstaclesFactory = new(obstaclesPrefabs, this);
+        m_obstaclesFactory = new(obstaclesPrefabs, this, obstaclesParent);
         m_inUse = new();
         m_availables = new();
 
@@ -30,9 +30,11 @@ public class ObstaclesPool
     {
         lock (m_availables)
         {
+            Debug.Log(m_availables.Count);
             if (m_availables.Count > 0)
             {
-                Obstacle objectToReturn = m_availables[m_availables.Count - 1];
+                Debug.Log("take");
+                Obstacle objectToReturn = m_availables[0];
                 m_availables.Remove(objectToReturn);
                 m_inUse.Add(objectToReturn);
 
@@ -40,6 +42,7 @@ public class ObstaclesPool
             }
             else
             {
+                Debug.Log("create");
                 Obstacle newObjectToReturn = m_obstaclesFactory.CreateRandomObject();
                 m_inUse.Add(newObjectToReturn);
 
