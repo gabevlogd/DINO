@@ -109,9 +109,6 @@
             "m_Id": "1e03a8c363f94705ad2a2e86059b2a81"
         },
         {
-            "m_Id": "ade29cdaf12744e08aa1c6f1463d0edc"
-        },
-        {
             "m_Id": "519c202edac94bedbb3de0096d185d56"
         },
         {
@@ -1075,7 +1072,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Power",
     "m_StageCapability": 3,
-    "m_Value": 3.0,
+    "m_Value": 1.5,
     "m_DefaultValue": 1.0,
     "m_Labels": []
 }
@@ -3834,21 +3831,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "81911094a5bd49b2a161529f60378e91",
-    "m_Id": 0,
-    "m_DisplayName": "Distortion",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.NormalMaterialSlot",
     "m_ObjectId": "820aca9e0f734b04bd0577e3ea2d24fa",
     "m_Id": 0,
@@ -4616,41 +4598,6 @@
 }
 
 {
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
-    "m_ObjectId": "ade29cdaf12744e08aa1c6f1463d0edc",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "Property",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -1339.0001220703125,
-            "y": -321.99993896484377,
-            "width": 126.0,
-            "height": 34.000030517578128
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "81911094a5bd49b2a161529f60378e91"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Property": {
-        "m_Id": "c96ed19c5aec4b0495bdbdf71a729ded"
-    }
-}
-
-{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.PositionNode",
     "m_ObjectId": "afab0e2ccffc4fb3b36edbbaf5d5710f",
@@ -4910,21 +4857,15 @@
     "m_Value": 0.0,
     "m_SerializableColorKeys": [
         {
-            "x": 0.09905660152435303,
-            "y": 0.15310455858707429,
+            "x": 1.0,
+            "y": 1.0,
             "z": 1.0,
             "w": 0.0
         },
         {
             "x": 1.0,
-            "y": 0.3333333432674408,
-            "z": 0.0,
-            "w": 0.5000076293945313
-        },
-        {
-            "x": 0.9905660152435303,
-            "y": 0.042052313685417178,
-            "z": 0.38670146465301516,
+            "y": 1.0,
+            "z": 1.0,
             "w": 1.0
         }
     ],

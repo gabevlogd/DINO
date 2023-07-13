@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6899824124221233522}
   - component: {fileID: 4596700264202895007}
-  - component: {fileID: 7285754909440544165}
+  - component: {fileID: 4238758910686369692}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -46,8 +46,8 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &7285754909440544165
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4238758910686369692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8297768270378347986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53f3ca1f43c005342b912ebb4b9b5c15, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c3e97843525c114e93f1c6c7cc95cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Data:
@@ -83,7 +83,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11271753921739945, guid: 30d36c878f8c8d847b6dafe52b879c4d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11271753921739945, guid: 30d36c878f8c8d847b6dafe52b879c4d, type: 3}
       propertyPath: m_LocalPosition.z
